@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import { useForm } from 'react-hook-form'
 import './App.css';
 
@@ -7,7 +8,7 @@ interface TODO {
   title: String,
   completed: Boolean,
   description: String,
-
+  id: String
 }
 
 
@@ -17,19 +18,18 @@ const App = () => {
     title: "",
     completed: false,
     description: "",
-
+    id: uuidv4(),
   })
   const [todos, setTodos] = useState([])
-  const handleSetTitle = () => {
-
-  }
-
-  const handleSetDesc = () => {
-
-  }
 
 
-  const { register, handleSubmit } = useForm<TODO>(); const onSubmit = (data: TODO) => { console.log("data", data); };
+  const { register, handleSubmit } = useForm<TODO>(); const onSubmit = (data: TODO) => {
+     console.log("data", data);
+     setAddTodo({
+       ...data
+     })
+     setTodos(prevTodos => [...prevTodos, addTodo])
+    };
 
   return (
 
@@ -37,14 +37,7 @@ const App = () => {
       <section className="wrapper">
         <div className="todos-container">
           <h1>typescript Todos</h1>
-          <div className="todo">
-            <h2>{addTodo.title}</h2>
-            <ul className="list">
-              <li className="listitem">1</li>
-              <li className="listitem">2</li>
-              <li className="listitem">3</li>
-            </ul>
-          </div>
+          {}
         </div>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-container">

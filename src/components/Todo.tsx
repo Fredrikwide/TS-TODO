@@ -1,9 +1,12 @@
-import React from 'react'
+import React, {useState} from 'react'
 
-const Todo = () => {
+
+const Todo = ({data}) => {
   return (
-    <div>
-
+    <div className="todo">
+            <h2>{data.title}</h2>
+            <p>{data.description}</p>
+            <p>{data.completed? "OK" : "X"}</p>
     </div>
   )
 }
